@@ -21,7 +21,6 @@ jobs:
         dotnet-version: ${{ inputs.dotnet-version }}
 
     - name: 🔄 Restore
-      working-directory: src
       run: dotnet restore
 
     - name: 🏗️ Build
