@@ -25,12 +25,10 @@ jobs:
       run: dotnet restore
 
     - name: 🏗️ Build
-      working-directory: src
       run: |
         dotnet build --configuration Release --no-restore
 
     - name: 📦 Pack
-      working-directory: src
       run: dotnet pack --configuration Release --no-build -o ./nupkg
 
     - name: ⬆️ Upload package artifact
