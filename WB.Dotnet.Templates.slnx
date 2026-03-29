@@ -1,5 +1,3 @@
 <Solution>
-  <Folder Name="/src/">
-    <Project Path="src/WB.Dotnet.Templates.csproj" />
-  </Folder>
+  <Project Path="WB.Dotnet.Templates.csproj" />
 </Solution>
