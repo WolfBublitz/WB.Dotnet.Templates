@@ -1,10 +1,9 @@
-# WB.Logging
+# Changelog
 
-## 1.0.0 - 2026-02-24
+## 1.0.0 - 2026-03-29
 
 ### ✨ Features
 
-- `Logger` class that implements the `ILogger` interface, providing methods for logging messages with different severity levels (Info, Warning, Error).
-- `ILogSink` interface that defines the contract for log sinks, allowing for extensibility and customization of log output.
-- `ConsoleLogSink` class that implements the `ILogSink` interface, enabling logging to the console using `System.Console`.
-- Extension method `AttachConsole()` for the `ILogger` interface, allowing for easy attachment of a console log sink to any logger instance.
+- Initial release of the library template.
+- Templates:
+  - `wb-lib`: A template for creating a new .NET library project.
