@@ -63,7 +63,8 @@
       "modifiers": [
         {
           "rename": {
-            "_gitignore": ".gitignore"
+            "_gitignore": ".gitignore",
+            "_vscode": ".vscode"
           }
         }
       ]
