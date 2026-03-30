@@ -30,21 +30,21 @@
     "Tags": {
         "type": "parameter",
         "datatype": "string",
-        "defaultValue": "",
+        "defaultValue": "WB",
         "displayName": "Tags",
         "description": "Specifies the tags for the project, separated by commas"
     },
     "ProjectUrl": {
         "type": "parameter",
         "datatype": "string",
-        "defaultValue": "",
+        "defaultValue": "https://github.com/WolfBublitz",
         "displayName": "Project URL",
         "description": "Specifies the URL of the project"
     },
     "RepositoryUrl": {
         "type": "parameter",
         "datatype": "string",
-        "defaultValue": "",
+        "defaultValue": "https://github.com/WolfBublitz",
         "displayName": "Repository URL",
         "description": "Specifies the URL of the repository"
     }
