@@ -25,11 +25,4 @@ jobs:
       - name: 🚚 Publishing NuGet
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.NUGET_API_KEY }}
-        run: |
-          packages=$(find . -name "*.nupkg")
-
-          for package in $packages; do
-            echo "Publishing $package to nuget.org"
-
-            dotnet nuget push "$package"
-          done
+        run: dotnet nuget push *.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
