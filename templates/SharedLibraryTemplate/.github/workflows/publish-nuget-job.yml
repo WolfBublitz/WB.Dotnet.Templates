@@ -27,11 +27,8 @@ jobs:
           packages=$(find . -maxdepth 1 -name "*.nupkg")
           source="https://api.nuget.org/v3/index.json"
 
-          for pkg in $packages; do
-            echo "Publishing $pkg to $source"
+          for package in $packages; do
+            echo "Publishing $package to $source"
 
-            dotnet nuget push "$pkg" \
-              --api-key ${{ secrets.NUGET_API_KEY }} \
-              --source "$source" \
-              --skip-duplicate
+            dotnet nuget push "$package" --api-key "${{ secrets.NUGET_API_KEY }}" --source "$source" --skip-duplicate
           done
