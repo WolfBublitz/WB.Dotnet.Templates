@@ -14,7 +14,7 @@ jobs:
       id: csproj
       working-directory: src
       run: |
-        FILE=$(find . -maxdepth 2 -name "WB.Logging.csproj" | head -n 1)
+        FILE=$(find . -maxdepth 2 -name "${{ github.event.repository.name }}" | head -n 1)
 
         if [ -z "$FILE" ]; then
             echo "No csproj file found"
