@@ -12,36 +12,63 @@ jobs:
 
     - name: ⛏️ Extract version from csproj
       id: csproj
+      shell: pwsh
       run: |
-        FILE=$(find . -maxdepth 2 -name "${{ github.event.repository.name }}.csproj" | head -n 1)
+        $filesToCheck = @(
+          "${{ github.event.repository.name }}.csproj"
+          "Directory.Build.props"
+          "src/${{ github.event.repository.name }}.csproj"
+        )
 
-        if [ -z "$FILE" ]; then
-            echo "No csproj file found"
-            exit 1
-        fi
+        # Find first existing file (maxdepth 2)
+        $foundFile = $null
 
-        VERSION=$(grep -oPm1 "(?<=<Version>)[^<]+" "$FILE")
+        foreach ($pattern in $filesToCheck) {
+          $file = Get-ChildItem -Path . -Filter $pattern -Recurse -Depth 2 | Select-Object -First 1
 
-        if [ -z "$VERSION" ]; then
-            echo "No <Version> tag found in $FILE"
-            exit 1
-        fi
+          if ($file) {
+              $foundFile = $file
+              break
+          }
+        }
 
-        echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+        if (-not $foundFile) {
+          Write-Host "No matching csproj file found"
+          exit 1
+        }
+
+        Write-Host "Found csproj: $($foundFile.FullName)"
+
+        # Extract <Version> tag
+        $xml = [xml](Get-Content -Path $foundFile.FullName -Raw)
+        $version = $xml.Project.PropertyGroup.Version
+
+        if (-not $version) {
+          Write-Host "No <Version> tag found in $($foundFile.FullName)"
+          exit 1
+        }
+
+        Write-Host "Found version: $version"
+
+        # Write to GitHub output
+        "version=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
     - name: 🟰 Compare tag with csproj version
+      shell: pwsh
       run: |
-        TAG="${GITHUB_REF_NAME}"
+        $tag = $env:GITHUB_REF_NAME
 
-        # Strip leading 'v' if present
-        CLEAN_TAG="${TAG#v}"
+        # Strip leading 'v'
+        $cleanTag = $tag.TrimStart('v')
 
-        if [ "$CLEAN_TAG" != "${{ steps.csproj.outputs.version }}" ]; then
-            echo "Version mismatch:"
-            echo "  Tag:      $TAG"
-            echo "  CleanTag: $CLEAN_TAG"
-            echo "  csproj:   ${{ steps.csproj.outputs.version }}"
+        $csprojVersion = "${{ steps.csproj.outputs.version }}"
+
+        if ($cleanTag -ne $csprojVersion) {
+            Write-Host "Version mismatch:"
+            Write-Host "  Tag:      $tag"
+            Write-Host "  CleanTag: $cleanTag"
+            Write-Host "  csproj:   $csprojVersion"
             exit 1
-        fi
+        }
 
-        echo "Version matches tag: $TAG"
+        
