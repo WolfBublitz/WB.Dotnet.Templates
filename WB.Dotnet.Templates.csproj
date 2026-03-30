@@ -2,10 +2,9 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0</PackageVersion>
-    <PackageId>WB.DotnetTemplates</PackageId>
+    <Version>1.0.0-preview.2</Version>
     <Title>WB Dotnet Templates</Title>
-    <Authors>Me</Authors>
+    <Authors>Wolf Bublitz</Authors>
     <Description>A collection of .NET templates for WB projects.</Description>
     <PackageTags>dotnet-new;templates;wb</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -17,7 +16,7 @@
 
   <ItemGroup>
     <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
-    <Compile Remove="**\*" />
+    <Compile Remove="templates\**\*" />
   </ItemGroup>
 
 </Project>
