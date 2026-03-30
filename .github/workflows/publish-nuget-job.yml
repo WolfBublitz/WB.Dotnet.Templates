@@ -22,7 +22,7 @@ jobs:
         with:
           dotnet-version: ${{ inputs.dotnet-version }}
 
-      - name: 🚚 Publish to NuGet
+      - name: 🚚 Publishing NuGet
         shell: pwsh
         run: |
           $packages = Get-ChildItem -Path . -Filter *.nupkg
