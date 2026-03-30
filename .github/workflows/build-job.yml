@@ -27,10 +27,10 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: 📦 Pack
-      run: dotnet pack --configuration Release --no-build -o ./artifacts
+      run: dotnet pack --configuration Release --no-build -o ./nuget
 
     - name: ⬆️ Upload package artifact
       uses: actions/upload-artifact@v4
       with:
         name: nuget-package
-        path: artifacts/*.nupkg
+        path: nuget/*.nupkg
