@@ -26,11 +26,14 @@ jobs:
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
-          packages=$(find . -maxdepth 1 -name "*.nupkg")
+          packages=$(find . -name "*.nupkg")
           source="https://api.nuget.org/v3/index.json"
 
           for package in $packages; do
             echo "Publishing $package to $source"
 
-            dotnet nuget push "$package" --api-key "$NUGET_API_KEY" --source "$source" --skip-duplicate
+            dotnet nuget push "$package" \
+              --api-key "$NUGET_API_KEY" \
+              --source "$source" \
+              --skip-duplicate
           done
