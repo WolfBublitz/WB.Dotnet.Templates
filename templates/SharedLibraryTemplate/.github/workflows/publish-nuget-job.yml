@@ -22,11 +22,14 @@ jobs:
         with:
           dotnet-version: ${{ inputs.dotnet-version }}
 
+      - name: 🔧 Configure NuGet source
+        run: dotnet nuget add source "https://api.nuget.org/v3/index.json" --name "nuget.org"
+
       - name: 🚚 Publishing NuGet
         shell: pwsh
         run: |
           $packages = Get-ChildItem -Path . -Filter *.nupkg
-          $source = "https://api.nuget.org/v3/index.json"
+          $source = "nuget.org"
 
           foreach ($pkg in $packages) {
             "Publishing $($pkg.FullName) to $source"
