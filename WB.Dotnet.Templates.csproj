@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <Version>1.0.0-preview.2</Version>
+    <Version>1.0.0-preview.3</Version>
     <Title>WB Dotnet Templates</Title>
     <Authors>Wolf Bublitz</Authors>
     <Description>A collection of .NET templates for WB projects.</Description>
