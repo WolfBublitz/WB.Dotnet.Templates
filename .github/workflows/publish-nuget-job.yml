@@ -22,18 +22,31 @@ jobs:
         with:
           dotnet-version: ${{ inputs.dotnet-version }}
 
+      - name: 🔧 Reset NuGet sources
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          echo "Clearing all NuGet sources..."
+          dotnet nuget list source | tail -n +3 | awk '{print $2}' | while read src; do
+            echo "Removing source: $src"
+            dotnet nuget remove source "$src" || true
+          done
+
+          echo "Adding new NuGet source: nuget.org"
+          dotnet nuget add source "https://api.nuget.org/v3/index.json" \
+            --name "nuget.org" \
+            --username "apikey" \
+            --password "$NUGET_API_KEY" \
+            --store-password-in-clear-text
+
       - name: 🚚 Publishing NuGet
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
           packages=$(find . -name "*.nupkg")
-          source="https://api.nuget.org/v3/index.json"
 
           for package in $packages; do
             echo "Publishing $package to $source"
 
-            dotnet nuget push "$package" \
-              --api-key "$NUGET_API_KEY" \
-              --source "$source" \
-              --skip-duplicate
+            dotnet nuget push "$package" --source nuget.org --skip-duplicate
           done
