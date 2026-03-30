@@ -26,13 +26,14 @@ jobs:
         shell: pwsh
         run: |
           $packages = Get-ChildItem -Path . -Filter *.nupkg
+          $source = "https://api.nuget.org/v3/index.json"
 
           foreach ($pkg in $packages) {
-            "Publishing $($pkg.FullName) to nuget.org"
+            "Publishing $($pkg.FullName) to $source"
 
             dotnet nuget push `
               $pkg.FullName `
               --api-key $env:NUGET_API_KEY `
-              --source https://api.nuget.org/v3/index.json `
+              --source $source `
               --skip-duplicate
           }
