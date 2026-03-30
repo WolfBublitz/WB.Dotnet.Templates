@@ -23,4 +23,11 @@ jobs:
           dotnet-version: ${{ inputs.dotnet-version }}
 
       - name: 🚚 Publish to NuGet
-        run: dotnet nuget push "*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        shell: pwsh
+        run: |
+          $packages = Get-ChildItem -Path . -Filter *.nupkg
+
+          foreach ($pkg in $packages) {
+            Write-Output "Publishing $($pkg.FullName) to nuget.org"
+            dotnet nuget push $pkg.FullName  --api-key "${{ secrets.NUGET_API_KEY }}"  --source "https://api.nuget.org/v3/index.json"
+          }
