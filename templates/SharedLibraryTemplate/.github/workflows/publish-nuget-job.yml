@@ -11,6 +11,13 @@ jobs:
   publish-nuget:
     runs-on: ubuntu-latest
     steps:        
+      - name: ✅ Ensure NuGet API key is present
+        run: |
+          if [ -z "${{ secrets.NUGET_API_KEY }}" ]; then
+            echo "NUGET_API_KEY secret is missing. Did you forget 'secrets: inherit' in the caller workflow?"
+            exit 1
+          fi
+  
       - name: ⬇️ Download package artifact
         uses: actions/download-artifact@v4
         with:
