@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ inputs.dotnet-version }}
-^
+
       - name: 🚚 Publish to NuGet
         run: dotnet nuget push "*.nupkg" \
               --api-key ${{ secrets.NUGET_API_KEY }} \
