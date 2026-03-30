@@ -58,6 +58,17 @@
         "path": "tests/UnitTests/src/UnitTests.csproj"        
     }
   ],
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "rename": {
+            "_gitignore": ".gitignore"
+          }
+        }
+      ]
+    }
+  ],
 
   "postActions": [
     {
