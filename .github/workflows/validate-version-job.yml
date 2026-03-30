@@ -10,7 +10,7 @@ jobs:
     - name: 🗃️ Checkout
       uses: actions/checkout@v4
 
-    - name: Extract version from csproj
+    - name: ⛏️ Extract version from csproj
       id: csproj
       working-directory: src
       run: |
@@ -30,7 +30,7 @@ jobs:
 
         echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
-    - name: Compare tag with csproj version
+    - name: 🟰 Compare tag with csproj version
       run: |
         TAG="${GITHUB_REF_NAME}"
 

@@ -15,7 +15,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: nuget-package
-          path: ./artifacts
+          path: .
 
       - name: 🔧 Setup .NET
         uses: actions/setup-dotnet@v4
@@ -23,6 +23,6 @@ jobs:
           dotnet-version: ${{ inputs.dotnet-version }}
 
       - name: 🚚 Publish to NuGet
-        run: dotnet nuget push "./artifacts/*.nupkg" \
+        run: dotnet nuget push "*.nupkg" \
               --api-key ${{ secrets.NUGET_API_KEY }} \
               --source https://api.nuget.org/v3/index.json
