@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0</PackageVersion>
+    <PackageVersion>1.0.0-preview.1</PackageVersion>
     <PackageId>WB.DotnetTemplates</PackageId>
     <Title>WB Dotnet Templates</Title>
     <Authors>Wolf Bublitz</Authors>
