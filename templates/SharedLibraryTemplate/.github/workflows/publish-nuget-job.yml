@@ -23,17 +23,15 @@ jobs:
           dotnet-version: ${{ inputs.dotnet-version }}
 
       - name: 🚚 Publishing NuGet
-        shell: pwsh
         run: |
-          $packages = Get-ChildItem -Path . -Filter *.nupkg
-          $source = "nuget.org"
+          packages=$(find . -maxdepth 1 -name "*.nupkg")
+          source="https://api.nuget.org/v3/index.json"
 
-          foreach ($pkg in $packages) {
-            "Publishing $($pkg.FullName) to $source"
+          for pkg in $packages; do
+            echo "Publishing $pkg to $source"
 
-            dotnet nuget push `
-              $pkg.FullName `
-              --api-key $env:NUGET_API_KEY `
-              --source $source `
+            dotnet nuget push "$pkg" \
+              --api-key ${{ secrets.NUGET_API_KEY }} \
+              --source "$source" \
               --skip-duplicate
-          }
+          done
