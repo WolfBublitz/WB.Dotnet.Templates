@@ -63,6 +63,7 @@
       "modifiers": [
         {
           "rename": {
+            "_editorconfig": ".editorconfig"
             "_gitignore": ".gitignore",
             "_vscode": ".vscode"
           }

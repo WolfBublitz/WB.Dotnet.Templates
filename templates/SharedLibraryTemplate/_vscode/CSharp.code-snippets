@@ -24,6 +24,17 @@
 			"// └─────────────────────────────────────────────────────────────────────────────┘",
 		]
 	},
+
+	"Class Section Internal Properties": {
+		"scope": "csharp",
+		"prefix": "doc_class_section_internal_properties",
+		"body": [
+			"// ┌─────────────────────────────────────────────────────────────────────────────┐",
+			"// │ Internal Properties                                                         │",
+			"// └─────────────────────────────────────────────────────────────────────────────┘",
+		]
+	},
+
 	"Class Section Protected Properties": {
 		"scope": "csharp",
 		"prefix": "doc_class_section_protected_properties",
@@ -33,6 +44,7 @@
 			"// └─────────────────────────────────────────────────────────────────────────────┘",
 		]
 	},
+
 	"Class Section Private Properties": {
 		"scope": "csharp",
 		"prefix": "doc_class_section_private_properties",
@@ -49,6 +61,16 @@
 		"body": [
 			"// ┌─────────────────────────────────────────────────────────────────────────────┐",
 			"// │ Public Fields                                                               │",
+			"// └─────────────────────────────────────────────────────────────────────────────┘",
+		]
+	},
+
+	"Class Section Internal Fields": {
+		"scope": "csharp",
+		"prefix": "doc_class_section_internal_fields",
+		"body": [
+			"// ┌─────────────────────────────────────────────────────────────────────────────┐",
+			"// │ Internal Fields                                                             │",
 			"// └─────────────────────────────────────────────────────────────────────────────┘",
 		]
 	},
@@ -82,6 +104,17 @@
 			"// └─────────────────────────────────────────────────────────────────────────────┘",
 		]
 	},
+
+	"Class Section Internal Methods": {
+		"scope": "csharp",
+		"prefix": "doc_class_section_internal_methods",
+		"body": [
+			"// ┌─────────────────────────────────────────────────────────────────────────────┐",
+			"// │ Internal Methods                                                            │",
+			"// └─────────────────────────────────────────────────────────────────────────────┘",
+		]
+	},
+
 	"Class Section Protected Methods": {
 		"scope": "csharp",
 		"prefix": "doc_class_section_protected_methods",
@@ -100,6 +133,7 @@
 			"// └─────────────────────────────────────────────────────────────────────────────┘",
 		]
 	},
+
 	"Class Section Public Constructors": {
 		"scope": "csharp",
 		"prefix": "doc_class_section_public_constructors",
@@ -109,6 +143,17 @@
 			"// └─────────────────────────────────────────────────────────────────────────────┘",
 		]
 	},
+
+	"Class Section Internal Constructors": {
+		"scope": "csharp",
+		"prefix": "doc_class_section_internal_constructors",
+		"body": [
+			"// ┌─────────────────────────────────────────────────────────────────────────────┐",
+			"// │ Internal Constructors                                                       │",
+			"// └─────────────────────────────────────────────────────────────────────────────┘",
+		]
+	},
+
 	"Class Section Protected Constructors": {
 		"scope": "csharp",
 		"prefix": "doc_class_section_protected_constructors",
@@ -118,6 +163,7 @@
 			"// └─────────────────────────────────────────────────────────────────────────────┘",
 		]
 	},
+
 	"Class Section Private Constructors": {
 		"scope": "csharp",
 		"prefix": "doc_class_section_private_constructors",
@@ -127,6 +173,7 @@
 			"// └─────────────────────────────────────────────────────────────────────────────┘",
 		]
 	},
+
 	"Class Section Events": {
 		"scope": "csharp",
 		"prefix": "doc_class_section_events",
@@ -136,5 +183,4 @@
 			"// └─────────────────────────────────────────────────────────────────────────────┘",
 		]
 	},
-
 }
