@@ -4,6 +4,10 @@ on:
       dotnet-version:
         required: false 
         type: string
+      test-directory:
+        required: false
+        type: string
+        default: "./tests"
 
 jobs:
   discover:
@@ -22,7 +26,11 @@ jobs:
       - name: 🔎 Find all .NET test projects
         id: discover
         run: |
-          projects=$(find . -name "*Tests.csproj" -o -name "*.Test.csproj" -o -name "*.Tests.csproj")
+          if [ -d "${{ inputs.test-directory }}" ]; then
+            projects=$(find "${{ inputs.test-directory }}" -type f \( -name "*Tests.csproj" -o -name "*.Test.csproj" -o -name "*.Tests.csproj" \))
+          else
+            projects=""
+          fi
           arr=()
           for project in $projects; do
             filename=$(basename "$project")
@@ -39,6 +47,7 @@ jobs:
   run:
     needs: discover
     runs-on: ubuntu-latest
+    if: ${{ needs.discover.outputs.matrix != '{"project":[]}' }}
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
