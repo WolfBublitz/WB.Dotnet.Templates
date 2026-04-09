@@ -14,6 +14,6 @@ jobs:
       id: csproj
       shell: pwsh
       run: |
-        $version = .github/workflows/scripts/Check-Version.ps1 -FilePath "Directory.Build.props" -ExpectedVersion $env:GITHUB_REF_NAME
+        $version = .github/workflows/scripts/Check-Version.ps1 -FilePath "src/WB.Dotnet.Templates.csproj" -ExpectedVersion $env:GITHUB_REF_NAME
 
         
