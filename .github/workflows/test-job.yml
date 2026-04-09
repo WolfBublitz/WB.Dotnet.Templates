@@ -26,7 +26,11 @@ jobs:
       - name: 🔎 Find all .NET test projects
         id: discover
         run: |
-          projects=$(find ${{ inputs.test-directory }} -type f \( -name "*Tests.csproj" -o -name "*.Test.csproj" -o -name "*.Tests.csproj" \))
+          if [ -d "${{ inputs.test-directory }}" ]; then
+            projects=$(find "${{ inputs.test-directory }}" -type f \( -name "*Tests.csproj" -o -name "*.Test.csproj" -o -name "*.Tests.csproj" \))
+          else
+            projects=""
+          fi
           arr=()
           for project in $projects; do
             filename=$(basename "$project")
